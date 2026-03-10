@@ -1,1187 +1,861 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>(주)나루텍 | Narutech Co., Ltd</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      :root {
-        --blue: #004098;
-        --blue-dark: #002d6e;
-        --blue-light: #1a5aad;
-        --blue-pale: #e8eef8;
-        --blue-subtle: #f0f4fb;
-        --text: #1a1a2e;
-        --muted: #5a6a80;
-        --border: #dce5f0;
-        --white: #ffffff;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        background: var(--white);
-        color: var(--text);
-        font-family: "Noto Sans KR", "DM Sans", sans-serif;
-        font-weight: 400;
-        line-height: 1.7;
-        overflow-x: hidden;
-      }
-
-      /* NAV */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 200;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 5%;
-        height: 70px;
-      }
-
-      .nav-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        text-decoration: none;
-      }
-
-      .logo-mark {
-        height: 44px;
-        width: auto;
-        display: block;
-        background: var(--blue);
-        border-radius: 8px;
-        padding: 4px;
-      }
-
-      .logo-text {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.1;
-      }
-      .logo-ko {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--blue);
-        letter-spacing: -0.02em;
-      }
-      .logo-en {
-        font-size: 0.62rem;
-        color: var(--muted);
-        letter-spacing: 0.06em;
-        font-family: "DM Sans", sans-serif;
-      }
-
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 2.5rem;
-      }
-
-      nav a {
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        transition: color 0.2s;
-        position: relative;
-      }
-
-      nav a::after {
-        content: "";
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--blue);
-        transform: scaleX(0);
-        transition: transform 0.2s;
-      }
-
-      nav a:hover {
-        color: var(--blue);
-      }
-      nav a:hover::after {
-        transform: scaleX(1);
-      }
-
-      .nav-cta {
-        background: var(--blue) !important;
-        color: white !important;
-        padding: 0.5rem 1.3rem;
-        border-radius: 6px;
-        font-size: 0.82rem !important;
-      }
-      .nav-cta::after {
-        display: none !important;
-      }
-      .nav-cta:hover {
-        background: var(--blue-dark) !important;
-        opacity: 0.9;
-      }
-
-      /* HERO */
-      #hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 100px 5% 60px;
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(135deg, #fff 0%, var(--blue-subtle) 100%);
-      }
-
-      .hero-bg-pattern {
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(0, 64, 152, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 64, 152, 0.04) 1px, transparent 1px);
-        background-size: 50px 50px;
-        pointer-events: none;
-      }
-
-      .hero-content {
-        position: relative;
-        max-width: 660px;
-      }
-
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: var(--blue-pale);
-        color: var(--blue);
-        font-size: 0.75rem;
-        font-weight: 500;
-        letter-spacing: 0.06em;
-        padding: 0.4rem 1rem;
-        border-radius: 100px;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(0, 64, 152, 0.15);
-        animation: fadeUp 0.5s ease both;
-      }
-
-      .badge-dot {
-        width: 6px;
-        height: 6px;
-        background: var(--blue);
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.4;
-        }
-      }
-
-      .hero-title {
-        font-size: clamp(2.4rem, 5vw, 4rem);
-        font-weight: 700;
-        line-height: 1.15;
-        letter-spacing: -0.04em;
-        margin-bottom: 1.5rem;
-        animation: fadeUp 0.5s 0.1s ease both;
-      }
-
-      .hero-title .highlight {
-        color: var(--blue);
-        position: relative;
-        display: inline-block;
-      }
-
-      .hero-title .highlight::after {
-        content: "";
-        position: absolute;
-        bottom: 4px;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: var(--blue);
-        opacity: 0.18;
-      }
-
-      .hero-sub {
-        font-size: 1rem;
-        color: var(--muted);
-        max-width: 500px;
-        margin-bottom: 2.5rem;
-        line-height: 1.8;
-        font-weight: 300;
-        animation: fadeUp 0.5s 0.2s ease both;
-      }
-
-      .hero-stats {
-        display: flex;
-        gap: 3rem;
-        margin-bottom: 3rem;
-        animation: fadeUp 0.5s 0.3s ease both;
-      }
-
-      .stat-num {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 2.8rem;
-        color: var(--blue);
-        line-height: 1;
-      }
-
-      .stat-label {
-        font-size: 0.78rem;
-        color: var(--muted);
-        margin-top: 0.2rem;
-        font-weight: 500;
-      }
-
-      .hero-buttons {
-        display: flex;
-        gap: 1rem;
-        animation: fadeUp 0.5s 0.4s ease both;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.9rem 2rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        text-decoration: none;
-        transition: all 0.2s;
-        cursor: pointer;
-        border: none;
-        font-family: "Noto Sans KR", sans-serif;
-      }
-
-      .btn-primary {
-        background: var(--blue);
-        color: white;
-        box-shadow: 0 4px 20px rgba(0, 64, 152, 0.25);
-      }
-
-      .btn-primary:hover {
-        background: var(--blue-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(0, 64, 152, 0.35);
-      }
-
-      .btn-outline {
-        background: transparent;
-        color: var(--blue);
-        border: 1.5px solid var(--blue);
-      }
-
-      .btn-outline:hover {
-        background: var(--blue-pale);
-        transform: translateY(-2px);
-      }
-
-      /* HERO SIDE CARD */
-      .hero-image-side {
-        position: absolute;
-        right: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 340px;
-        animation: fadeUp 0.7s 0.3s ease both;
-      }
-
-      .info-card {
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 1.8rem 2rem;
-        box-shadow: 0 8px 40px rgba(0, 64, 152, 0.08);
-        position: relative;
-      }
-
-      .info-card-title {
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--blue);
-        font-weight: 600;
-        margin-bottom: 1.2rem;
-      }
-
-      .info-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        padding: 0.55rem 0;
-        border-bottom: 1px solid var(--border);
-        font-size: 0.82rem;
-        gap: 1rem;
-      }
-
-      .info-row:last-child {
-        border-bottom: none;
-      }
-      .info-key {
-        color: var(--muted);
-        white-space: nowrap;
-      }
-      .info-val {
-        color: var(--text);
-        font-weight: 500;
-        text-align: right;
-      }
-
-      .floating-tag {
-        position: absolute;
-        background: var(--blue);
-        color: white;
-        font-size: 0.7rem;
-        font-weight: 600;
-        padding: 0.45rem 1rem;
-        border-radius: 100px;
-        white-space: nowrap;
-        box-shadow: 0 4px 15px rgba(0, 64, 152, 0.3);
-      }
-
-      .tag-est {
-        top: -14px;
-        right: 24px;
-      }
-      .tag-reg {
-        bottom: -14px;
-        left: 20px;
-      }
-
-      /* SECTIONS */
-      .section {
-        padding: 90px 5%;
-      }
-      .section-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-      .section-header {
-        margin-bottom: 3.5rem;
-      }
-
-      .section-tag {
-        font-size: 0.7rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--blue);
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-      }
-
-      .section-tag::before {
-        content: "";
-        width: 24px;
-        height: 2px;
-        background: var(--blue);
-      }
-
-      h2 {
-        font-size: clamp(1.8rem, 3vw, 2.5rem);
-        font-weight: 700;
-        letter-spacing: -0.04em;
-        line-height: 1.2;
-      }
-
-      h2 .blue {
-        color: var(--blue);
-      }
-
-      /* BUSINESS */
-      #business {
-        background: var(--blue-subtle);
-      }
-
-      .business-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-      }
-
-      .business-card {
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 2.5rem;
-        transition: all 0.25s;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .business-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: var(--blue);
-        transform: scaleY(0);
-        transform-origin: top;
-        transition: transform 0.3s;
-      }
-
-      .business-card:hover {
-        box-shadow: 0 12px 40px rgba(0, 64, 152, 0.1);
-        transform: translateY(-3px);
-      }
-      .business-card:hover::before {
-        transform: scaleY(1);
-      }
-
-      .biz-icon {
-        width: 52px;
-        height: 52px;
-        background: var(--blue-pale);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-        font-size: 1.5rem;
-      }
-
-      .biz-title {
-        font-size: 1.15rem;
-        font-weight: 700;
-        margin-bottom: 0.8rem;
-      }
-
-      .biz-desc {
-        font-size: 0.88rem;
-        color: var(--muted);
-        line-height: 1.7;
-        margin-bottom: 1.2rem;
-      }
-
-      .biz-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .biz-tag {
-        font-size: 0.72rem;
-        padding: 0.3rem 0.8rem;
-        border-radius: 6px;
-        background: var(--blue-pale);
-        color: var(--blue);
-        font-weight: 500;
-        border: 1px solid rgba(0, 64, 152, 0.15);
-      }
-
-      /* PROJECTS */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-      }
-
-      .project-item {
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 1.3rem 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        transition: all 0.2s;
-      }
-
-      .project-item:hover {
-        border-color: var(--blue);
-        background: var(--blue-subtle);
-        transform: translateX(4px);
-      }
-
-      .project-num {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 1.4rem;
-        color: rgba(0, 64, 152, 0.2);
-        min-width: 28px;
-        line-height: 1;
-      }
-
-      .project-name {
-        font-size: 0.85rem;
-        font-weight: 500;
-        line-height: 1.45;
-      }
-
-      /* ORG */
-      #organization {
-        background: var(--blue-subtle);
-      }
-
-      .org-chart {
-        max-width: 580px;
-        margin: 0 auto;
-      }
-
-      .org-ceo {
-        text-align: center;
-      }
-
-      .org-box {
-        display: inline-block;
-        background: var(--blue);
-        color: white;
-        font-weight: 700;
-        font-size: 1rem;
-        padding: 1rem 3rem;
-        border-radius: 12px;
-        letter-spacing: 0.04em;
-        box-shadow: 0 8px 30px rgba(0, 64, 152, 0.25);
-      }
-
-      .org-line {
-        width: 2px;
-        height: 40px;
-        background: rgba(0, 64, 152, 0.25);
-        margin: 0 auto;
-      }
-
-      .org-branch {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        position: relative;
-      }
-
-      .org-branch::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 25%;
-        right: 25%;
-        height: 2px;
-        background: rgba(0, 64, 152, 0.2);
-      }
-
-      .org-dept {
-        flex: 1;
-        max-width: 220px;
-        position: relative;
-      }
-
-      .org-dept::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 30px;
-        background: rgba(0, 64, 152, 0.2);
-      }
-
-      .org-dept-box {
-        margin-top: 30px;
-        background: white;
-        border: 1.5px solid var(--blue);
-        border-radius: 12px;
-        padding: 1.2rem 1.5rem;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0, 64, 152, 0.07);
-      }
-
-      .org-dept-name {
-        font-weight: 700;
-        font-size: 0.95rem;
-        color: var(--blue);
-        margin-bottom: 0.3rem;
-      }
-      .org-dept-role {
-        font-size: 0.78rem;
-        color: var(--muted);
-      }
-
-      /* CLIENTS */
-      .clients-strip {
-        display: flex;
-        gap: 1.2rem;
-        flex-wrap: wrap;
-      }
-
-      .client-badge {
-        background: var(--blue-pale);
-        border: 1px solid rgba(0, 64, 152, 0.15);
-        color: var(--blue);
-        font-size: 1rem;
-        font-weight: 700;
-        padding: 1rem 2.2rem;
-        border-radius: 12px;
-        transition: all 0.2s;
-        letter-spacing: 0.01em;
-      }
-
-      .client-badge:hover {
-        background: var(--blue);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0, 64, 152, 0.25);
-      }
-
-      /* CONTACT */
-      #contact {
-        background: var(--blue);
-        color: white;
-      }
-      #contact .section-tag {
-        color: rgba(255, 255, 255, 0.55);
-      }
-      #contact .section-tag::before {
-        background: rgba(255, 255, 255, 0.35);
-      }
-      #contact h2 {
-        color: white;
-      }
-
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: start;
-      }
-
-      .contact-desc {
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.65);
-        line-height: 1.8;
-        margin-bottom: 2rem;
-        font-weight: 300;
-      }
-
-      .contact-info-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .contact-info-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-
-      .ci-icon {
-        width: 38px;
-        height: 38px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        flex-shrink: 0;
-      }
-
-      .ci-label {
-        font-size: 0.7rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.45);
-        margin-bottom: 0.15rem;
-      }
-      .ci-value {
-        font-size: 0.9rem;
-        color: white;
-      }
-      .ci-value a {
-        color: white;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        transition: border-color 0.2s;
-      }
-      .ci-value a:hover {
-        border-color: white;
-      }
-
-      .contact-card {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 16px;
-        padding: 2.5rem;
-      }
-
-      .contact-card-title {
-        font-size: 0.75rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.5);
-        margin-bottom: 1.5rem;
-      }
-
-      .contact-detail-row {
-        padding: 0.8rem 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 0.85rem;
-      }
-      .contact-detail-row:last-child {
-        border-bottom: none;
-      }
-      .cd-key {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 0.75rem;
-        margin-bottom: 0.15rem;
-      }
-      .cd-val {
-        color: white;
-        font-weight: 400;
-      }
-
-      /* FOOTER */
-      footer {
-        background: var(--blue-dark);
-        color: rgba(255, 255, 255, 0.45);
-        padding: 1.8rem 5%;
-        font-size: 0.78rem;
-      }
-
-      .footer-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-      }
-
-      .footer-company {
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.75);
-        margin-bottom: 0.2rem;
-      }
-
-      /* ANIMATIONS */
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(24px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* RESPONSIVE */
-      @media (max-width: 900px) {
-        .hero-image-side {
-          display: none;
-        }
-        .business-grid,
-        .projects-grid,
-        .contact-grid {
-          grid-template-columns: 1fr;
-        }
-        nav ul {
-          display: none;
-        }
-        .hero-stats {
-          gap: 1.5rem;
-        }
-        .org-branch {
-          flex-direction: column;
-          align-items: center;
-        }
-        .org-branch::before {
-          display: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- NAV -->
-    <nav>
-      <a href="#hero" class="nav-logo">
-        <img src="logo-square.jpg" alt="나루텍 로고" class="logo-mark" />
-        <div class="logo-text">
-          <span class="logo-ko">(주)나루텍</span>
-          <span class="logo-en">NARUTECH CO., LTD</span>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>(주)나루텍 | Narutech Co., Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue: #004098;
+      --blue-dark: #002d6e;
+      --blue-light: #1a5aad;
+      --blue-pale: #e8eef8;
+      --blue-subtle: #f0f4fb;
+      --text: #1a1a2e;
+      --muted: #5a6a80;
+      --border: #dce5f0;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'Noto Sans KR', 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      height: 70px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      height: 44px;
+      width: auto;
+      display: block;
+      background: var(--blue);
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-ko { font-size: 0.95rem; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; }
+    .logo-en { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.06em; font-family: 'DM Sans', sans-serif; }
+
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    nav a:hover { color: var(--blue); }
+    nav a:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      background: var(--blue) !important;
+      color: white !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 6px;
+      font-size: 0.82rem !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--blue-dark) !important; opacity: 0.9; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 5% 60px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff 0%, var(--blue-subtle) 100%);
+    }
+
+    .hero-bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,64,152,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,64,152,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; max-width: 660px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue-pale);
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0,64,152,0.15);
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s 0.1s ease both;
+    }
+
+    .hero-title .highlight {
+      color: var(--blue);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 3px;
+      background: var(--blue);
+      opacity: 0.18;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+      font-weight: 300;
+      animation: fadeUp 0.5s 0.2s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.5s 0.3s ease both;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      animation: fadeUp 0.5s 0.4s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 4px 20px rgba(0,64,152,0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,64,152,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 1.5px solid var(--blue);
+    }
+
+    .btn-outline:hover {
+      background: var(--blue-pale);
+      transform: translateY(-2px);
+    }
+
+    /* HERO SIDE CARD */
+    .hero-image-side {
+      position: absolute;
+      right: 5%; top: 50%;
+      transform: translateY(-50%);
+      width: 340px;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .info-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 8px 40px rgba(0,64,152,0.08);
+      position: relative;
+    }
+
+    .info-card-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+      gap: 1rem;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+    .info-key { color: var(--muted); white-space: nowrap; }
+    .info-val { color: var(--text); font-weight: 500; text-align: right; }
+
+    .floating-tag {
+      position: absolute;
+      background: var(--blue);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(0,64,152,0.3);
+    }
+
+    .tag-est { top: -14px; right: 24px; }
+    .tag-reg { bottom: -14px; left: 20px; }
+
+    .hero-image-side { padding: 20px 0; }
+
+    /* SECTIONS */
+    .section { padding: 90px 5%; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { margin-bottom: 3.5rem; }
+
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 24px; height: 2px;
+      background: var(--blue);
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+    }
+
+    h2 .blue { color: var(--blue); }
+
+    /* BUSINESS */
+    #business { background: var(--blue-subtle); }
+
+    .business-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .business-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .business-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--blue);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s;
+    }
+
+    .business-card:hover { box-shadow: 0 12px 40px rgba(0,64,152,0.1); transform: translateY(-3px); }
+    .business-card:hover::before { transform: scaleY(1); }
+
+    .biz-icon {
+      width: 52px; height: 52px;
+      background: var(--blue-pale);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .biz-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.8rem; }
+
+    .biz-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+
+    .biz-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .biz-tag {
+      font-size: 0.72rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      background: var(--blue-pale);
+      color: var(--blue);
+      font-weight: 500;
+      border: 1px solid rgba(0,64,152,0.15);
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .project-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.2s;
+    }
+
+    .project-item:hover {
+      border-color: var(--blue);
+      background: var(--blue-subtle);
+      transform: translateX(4px);
+    }
+
+    .project-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: rgba(0,64,152,0.2);
+      min-width: 28px;
+      line-height: 1;
+    }
+
+    .project-name { font-size: 0.85rem; font-weight: 500; line-height: 1.45; }
+
+    /* ORG */
+    #organization { background: var(--blue-subtle); }
+
+    .org-chart { max-width: 580px; margin: 0 auto; }
+
+    .org-ceo { text-align: center; }
+
+    .org-box {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 1rem 3rem;
+      border-radius: 12px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 8px 30px rgba(0,64,152,0.25);
+    }
+
+    .org-line {
+      width: 2px; height: 40px;
+      background: rgba(0,64,152,0.25);
+      margin: 0 auto;
+    }
+
+    .org-branch {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      position: relative;
+    }
+
+    .org-branch::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 25%; right: 25%;
+      height: 2px;
+      background: rgba(0,64,152,0.2);
+    }
+
+    .org-dept { flex: 1; max-width: 220px; position: relative; }
+
+    .org-dept::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 2px; height: 30px;
+      background: rgba(0,64,152,0.2);
+    }
+
+    .org-dept-box {
+      margin-top: 30px;
+      background: white;
+      border: 1.5px solid var(--blue);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,64,152,0.07);
+    }
+
+    .org-dept-name { font-weight: 700; font-size: 0.95rem; color: var(--blue); margin-bottom: 0.3rem; }
+    .org-dept-role { font-size: 0.78rem; color: var(--muted); }
+
+    /* CLIENTS */
+    .clients-strip { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+    .client-badge {
+      background: var(--blue-pale);
+      border: 1px solid rgba(0,64,152,0.15);
+      color: var(--blue);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 1rem 2.2rem;
+      border-radius: 12px;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .client-badge:hover {
+      background: var(--blue);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,64,152,0.25);
+    }
+
+    /* CONTACT */
+    #contact { background: var(--blue); color: white; }
+    #contact .section-tag { color: rgba(255,255,255,0.55); }
+    #contact .section-tag::before { background: rgba(255,255,255,0.35); }
+    #contact h2 { color: white; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .contact-info-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-info-item { display: flex; align-items: flex-start; gap: 1rem; }
+
+    .ci-icon {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .ci-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.15rem; }
+    .ci-value { font-size: 0.9rem; color: white; }
+    .ci-value a { color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s; }
+    .ci-value a:hover { border-color: white; }
+
+    .contact-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+
+    .contact-card-title { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+
+    .contact-detail-row { padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
+    .contact-detail-row:last-child { border-bottom: none; }
+    .cd-key { color: rgba(255,255,255,0.5); font-size: 0.75rem; margin-bottom: 0.15rem; }
+    .cd-val { color: white; font-weight: 400; }
+
+    /* FOOTER */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,0.45);
+      padding: 1.8rem 5%;
+      font-size: 0.78rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .footer-company { font-weight: 700; color: rgba(255,255,255,0.75); margin-bottom: 0.2rem; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-image-side { display: none; }
+      .business-grid, .projects-grid, .contact-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      .org-branch { flex-direction: column; align-items: center; }
+      .org-branch::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <img src="logo-square.jpg" alt="나루텍 로고" class="logo-mark">
+      <div class="logo-text">
+        <span class="logo-ko">(주)나루텍</span>
+        <span class="logo-en">NARUTECH CO., LTD</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="#business">사업분야</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#organization">조직</a></li>
+      <li><a href="#clients">고객사</a></li>
+      <li><a href="#contact" class="nav-cta">문의하기</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        소프트웨어 개발 및 유지보수 전문기업
+      </div>
+      <h1 class="hero-title">
+        산업 현장의<br>
+        디지털 전환을<br>
+        <span class="highlight">나루텍</span>이 함께합니다
+      </h1>
+      <p class="hero-sub">
+        2003년 창립 이래 20년 이상의 경험으로<br>
+        제조·에너지·바이오 산업의 스마트 시스템을 구축합니다.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">년 업력</div>
         </div>
-      </a>
-      <ul>
-        <li><a href="#business">사업분야</a></li>
-        <li><a href="#projects">프로젝트</a></li>
-        <li><a href="#organization">조직</a></li>
-        <li><a href="#clients">고객사</a></li>
-        <li><a href="#contact" class="nav-cta">문의하기</a></li>
-      </ul>
-    </nav>
-
-    <!-- HERO -->
-    <section id="hero">
-      <div class="hero-bg-pattern"></div>
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          소프트웨어 개발 및 유지보수 전문기업
+        <div class="hero-stat">
+          <div class="stat-num">11</div>
+          <div class="stat-label">최근 3년 프로젝트</div>
         </div>
-        <h1 class="hero-title">
-          산업 현장의<br />
-          디지털 전환을<br />
-          <span class="highlight">나루텍</span>이 함께합니다
-        </h1>
-        <p class="hero-sub">
-          2003년 창립 이래 20년 이상의 경험으로<br />
-          제조·에너지·바이오 산업의 스마트 시스템을 구축합니다.
-        </p>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="stat-num">20+</div>
-            <div class="stat-label">년 업력</div>
-          </div>
-          <div class="hero-stat">
-            <div class="stat-num">11</div>
-            <div class="stat-label">최근 3년 프로젝트</div>
-          </div>
-          <div class="hero-stat">
-            <div class="stat-num">3</div>
-            <div class="stat-label">주요 고객사</div>
-          </div>
-        </div>
-        <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary">프로젝트 보기 →</a>
-          <a href="#contact" class="btn btn-outline">문의하기</a>
+        <div class="hero-stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">주요 고객사</div>
         </div>
       </div>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">프로젝트 보기 →</a>
+        <a href="#contact" class="btn btn-outline">문의하기</a>
+      </div>
+    </div>
 
-      <div class="hero-image-side">
-        <div style="position: relative">
-          <span class="floating-tag tag-est">설립 2003.09.15</span>
-          <div class="info-card">
-            <div class="info-card-title">Company Profile</div>
-            <div class="info-row">
-              <span class="info-key">회사명</span
-              ><span class="info-val">(주)나루텍</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">대표자</span
-              ><span class="info-val">박경애</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">업종</span
-              ><span class="info-val">소프트웨어 개발·유지보수</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">대표전화</span
-              ><span class="info-val">02-852-0230</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">이메일</span
-              ><span class="info-val">park@narutech.co.kr</span>
-            </div>
+
+  </section>
+
+  <!-- BUSINESS -->
+  <section id="business" class="section">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-tag">Business Area</div>
+        <h2>핵심 <span class="blue">사업분야</span></h2>
+      </div>
+      <div class="business-grid">
+        <div class="business-card reveal">
+          <div class="biz-icon">🌐</div>
+          <div class="biz-title">웹 개발</div>
+          <p class="biz-desc">기업 맞춤형 웹 기반 업무 시스템 및 플랫폼을 개발합니다. 사용성과 성능을 모두 갖춘 솔루션을 제공합니다.</p>
+          <div class="biz-tags">
+            <span class="biz-tag">Java</span>
+            <span class="biz-tag">C#</span>
+            <span class="biz-tag">React.js</span>
           </div>
-          <span class="floating-tag tag-reg">사업자 107-86-39760</span>
+        </div>
+        <div class="business-card reveal">
+          <div class="biz-icon">🏭</div>
+          <div class="biz-title">설비 인터페이스 개발</div>
+          <p class="biz-desc">제조 현장의 설비와 시스템을 연결하는 인터페이스 개발 전문 역량을 보유합니다. 안정적인 실시간 통신을 구현합니다.</p>
+          <div class="biz-tags">
+            <span class="biz-tag">EIF</span>
+            <span class="biz-tag">CIM</span>
+            <span class="biz-tag">TCP/IP</span>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- BUSINESS -->
-    <section id="business" class="section">
-      <div class="section-inner">
-        <div class="section-header reveal">
-          <div class="section-tag">Business Area</div>
-          <h2>핵심 <span class="blue">사업분야</span></h2>
-        </div>
-        <div class="business-grid">
-          <div class="business-card reveal">
-            <div class="biz-icon">🌐</div>
-            <div class="biz-title">웹 개발</div>
-            <p class="biz-desc">
-              기업 맞춤형 웹 기반 업무 시스템 및 플랫폼을 개발합니다. 사용성과
-              성능을 모두 갖춘 솔루션을 제공합니다.
-            </p>
-            <div class="biz-tags">
-              <span class="biz-tag">Java</span>
-              <span class="biz-tag">C#</span>
-              <span class="biz-tag">React.js</span>
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-tag">Recent Projects</div>
+        <h2>최근 3년간 <span class="blue">참여 프로젝트</span></h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-item reveal"><span class="project-num">01</span><span class="project-name">LG에너지솔루션 FMCS</span></div>
+        <div class="project-item reveal"><span class="project-num">02</span><span class="project-name">GS칼텍스 여수공장 OOP</span></div>
+        <div class="project-item reveal"><span class="project-num">03</span><span class="project-name">HD조선해양 HHIP 업무시스템</span></div>
+        <div class="project-item reveal"><span class="project-num">04</span><span class="project-name">한미약품 Quantum MES</span></div>
+        <div class="project-item reveal"><span class="project-num">05</span><span class="project-name">LX하우시스 울산공장 MES/UMS</span></div>
+        <div class="project-item reveal"><span class="project-num">06</span><span class="project-name">LG이노텍 광학/기판 EIF 개발</span></div>
+        <div class="project-item reveal"><span class="project-num">07</span><span class="project-name">LG에너지솔루션 전극/조립 EIF</span></div>
+        <div class="project-item reveal"><span class="project-num">08</span><span class="project-name">LG에너지솔루션 물류설비제어</span></div>
+        <div class="project-item reveal"><span class="project-num">09</span><span class="project-name">LG화학 첨단소재 EIF</span></div>
+        <div class="project-item reveal"><span class="project-num">10</span><span class="project-name">LG디스플레이 검사시스템</span></div>
+        <div class="project-item reveal" style="grid-column: span 1;"><span class="project-num">11</span><span class="project-name">한화에어로스페이스 창원 2,3공장 통합모니터링 시스템</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORGANIZATION -->
+  <section id="organization" class="section">
+    <div class="section-inner">
+      <div class="section-header reveal" style="text-align:center;">
+        <div class="section-tag" style="justify-content:center;">Organization</div>
+        <h2>조직도</h2>
+      </div>
+      <div class="org-chart reveal">
+        <div class="org-ceo"><div class="org-box">CEO · 대표이사</div></div>
+        <div class="org-line"></div>
+        <div class="org-branch">
+          <div class="org-dept">
+            <div class="org-dept-box">
+              <div class="org-dept-name">경영지원팀</div>
+              <div class="org-dept-role">경영 및 사업기획</div>
             </div>
           </div>
-          <div class="business-card reveal">
-            <div class="biz-icon">🏭</div>
-            <div class="biz-title">설비 인터페이스 개발</div>
-            <p class="biz-desc">
-              제조 현장의 설비와 시스템을 연결하는 인터페이스 개발 전문 역량을
-              보유합니다. 안정적인 실시간 통신을 구현합니다.
-            </p>
-            <div class="biz-tags">
-              <span class="biz-tag">EIF</span>
-              <span class="biz-tag">CIM</span>
-              <span class="biz-tag">TCP/IP</span>
+          <div class="org-dept">
+            <div class="org-dept-box">
+              <div class="org-dept-name">사업개발팀</div>
+              <div class="org-dept-role">고객사 시스템 개발 및 운영</div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="section-inner">
-        <div class="section-header reveal">
-          <div class="section-tag">Recent Projects</div>
-          <h2>최근 3년간 <span class="blue">참여 프로젝트</span></h2>
-        </div>
-        <div class="projects-grid">
-          <div class="project-item reveal">
-            <span class="project-num">01</span
-            ><span class="project-name">LG에너지솔루션 FMCS</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">02</span
-            ><span class="project-name">GS칼텍스 여수공장 OOP</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">03</span
-            ><span class="project-name">HD조선해양 HHIP 업무시스템</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">04</span
-            ><span class="project-name">한미약품 Quantum MES</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">05</span
-            ><span class="project-name">LX하우시스 울산공장 MES/UMS</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">06</span
-            ><span class="project-name">LG이노텍 광학/기판 EIF 개발</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">07</span
-            ><span class="project-name">LG에너지솔루션 전극/조립 EIF</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">08</span
-            ><span class="project-name">LG에너지솔루션 물류설비제어</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">09</span
-            ><span class="project-name">LG화학 첨단소재 EIF</span>
-          </div>
-          <div class="project-item reveal">
-            <span class="project-num">10</span
-            ><span class="project-name">LG디스플레이 검사시스템</span>
-          </div>
-          <div class="project-item reveal" style="grid-column: span 1">
-            <span class="project-num">11</span
-            ><span class="project-name"
-              >한화에어로스페이스 창원 2,3공장 통합모니터링 시스템</span
-            >
-          </div>
-        </div>
+  <!-- CLIENTS -->
+  <section id="clients" class="section" style="background:var(--blue-subtle);">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-tag">Clients</div>
+        <h2>주요 <span class="blue">고객사</span></h2>
       </div>
-    </section>
-
-    <!-- ORGANIZATION -->
-    <section id="organization" class="section">
-      <div class="section-inner">
-        <div class="section-header reveal" style="text-align: center">
-          <div class="section-tag" style="justify-content: center">
-            Organization
-          </div>
-          <h2>조직도</h2>
-        </div>
-        <div class="org-chart reveal">
-          <div class="org-ceo"><div class="org-box">CEO · 대표이사</div></div>
-          <div class="org-line"></div>
-          <div class="org-branch">
-            <div class="org-dept">
-              <div class="org-dept-box">
-                <div class="org-dept-name">경영지원팀</div>
-                <div class="org-dept-role">경영 및 사업기획</div>
-              </div>
-            </div>
-            <div class="org-dept">
-              <div class="org-dept-box">
-                <div class="org-dept-name">사업개발팀</div>
-                <div class="org-dept-role">고객사 시스템 개발 및 운영</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="clients-strip reveal">
+        <div class="client-badge">LG CNS</div>
+        <div class="client-badge">한미사이언스</div>
+        <div class="client-badge">서브원</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CLIENTS -->
-    <section
-      id="clients"
-      class="section"
-      style="background: var(--blue-subtle)"
-    >
-      <div class="section-inner">
-        <div class="section-header reveal">
-          <div class="section-tag">Clients</div>
-          <h2>주요 <span class="blue">고객사</span></h2>
-        </div>
-        <div class="clients-strip reveal">
-          <div class="client-badge">LG CNS</div>
-          <div class="client-badge">한미사이언스</div>
-          <div class="client-badge">서브원</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="section-inner">
-        <div class="contact-grid">
-          <div>
-            <div class="section-header reveal">
-              <div class="section-tag">Contact Us</div>
-              <h2>언제든지<br />문의하세요</h2>
-            </div>
-            <p class="contact-desc reveal">
-              프로젝트 협업, 기술 문의, 채용 등<br />어떤 내용이든 편하게 연락
-              주세요.
-            </p>
-            <div class="contact-info-list reveal">
-              <div class="contact-info-item">
-                <div class="ci-icon">📞</div>
-                <div class="ci-content">
-                  <div class="ci-label">대표전화</div>
-                  <div class="ci-value">
-                    <a href="tel:02-852-0230">02-852-0230</a>
-                  </div>
-                </div>
-              </div>
-              <div class="contact-info-item">
-                <div class="ci-icon">✉️</div>
-                <div class="ci-content">
-                  <div class="ci-label">대표메일</div>
-                  <div class="ci-value">
-                    <a href="mailto:park@narutech.co.kr">park@narutech.co.kr</a>
-                  </div>
-                </div>
-              </div>
-              <div class="contact-info-item">
-                <div class="ci-icon">🌐</div>
-                <div class="ci-content">
-                  <div class="ci-label">홈페이지</div>
-                  <div class="ci-value">
-                    <a href="https://www.narutech.co.kr" target="_blank"
-                      >www.narutech.co.kr</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="reveal">
-            <div class="contact-card">
-              <div class="contact-card-title">Company Info</div>
-              <div class="contact-detail-row">
-                <div class="cd-key">주소</div>
-                <div class="cd-val">
-                  서울시 금천구 가산디지털1로 165<br />가산비즈니스센터 401호
-                </div>
-              </div>
-              <div class="contact-detail-row">
-                <div class="cd-key">사업자등록번호</div>
-                <div class="cd-val">107-86-39760</div>
-              </div>
-              <div class="contact-detail-row">
-                <div class="cd-key">설립일</div>
-                <div class="cd-val">2003년 9월 15일</div>
-              </div>
-              <div class="contact-detail-row">
-                <div class="cd-key">대표자</div>
-                <div class="cd-val">박경애</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-inner">
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="section-inner">
+      <div class="contact-grid">
         <div>
-          <div class="footer-company">(주)나루텍 | Narutech Co., Ltd</div>
-          <div>
-            사업자등록번호: 107-86-39760 &nbsp;|&nbsp; 대표: 박경애
-            &nbsp;|&nbsp; 설립: 2003.09.15
+          <div class="section-header reveal">
+            <div class="section-tag">Contact Us</div>
+            <h2>언제든지<br>문의하세요</h2>
+          </div>
+          <p class="contact-desc reveal">프로젝트 협업, 기술 문의, 채용 등<br>어떤 내용이든 편하게 연락 주세요.</p>
+          <div class="contact-info-list reveal">
+            <div class="contact-info-item">
+              <div class="ci-icon">📞</div>
+              <div class="ci-content">
+                <div class="ci-label">대표전화</div>
+                <div class="ci-value"><a href="tel:02-852-0230">02-852-0230</a></div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon">✉️</div>
+              <div class="ci-content">
+                <div class="ci-label">대표메일</div>
+                <div class="ci-value"><a href="/cdn-cgi/l/email-protection#5b2b3a29301b353a292e2f3e3833753834753029"><span class="__cf_email__" data-cfemail="a2d2c3d0c9e2ccc3d0d7d6c7c1ca8cc1cd8cc9d0">[email&#160;protected]</span></a></div>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon">🌐</div>
+              <div class="ci-content">
+                <div class="ci-label">홈페이지</div>
+                <div class="ci-value"><a href="https://www.narutech.co.kr" target="_blank">www.narutech.co.kr</a></div>
+              </div>
+            </div>
           </div>
         </div>
-        <div>© 2025 Narutech Co., Ltd. All rights reserved.</div>
+        <div class="reveal">
+          <div class="contact-card">
+            <div class="contact-card-title">Company Info</div>
+            <div class="contact-detail-row">
+              <div class="cd-key">주소</div>
+              <div class="cd-val">서울시 금천구 가산디지털1로 165<br>가산비즈니스센터 401호</div>
+            </div>
+            <div class="contact-detail-row">
+              <div class="cd-key">사업자등록번호</div>
+              <div class="cd-val">107-86-39760</div>
+            </div>
+            <div class="contact-detail-row">
+              <div class="cd-key">설립일</div>
+              <div class="cd-val">2003년 9월 15일</div>
+            </div>
+            <div class="contact-detail-row">
+              <div class="cd-key">대표자</div>
+              <div class="cd-val">박경애</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script>
-      const reveals = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => entry.target.classList.add("visible"), i * 60);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 },
-      );
-      reveals.forEach((el) => observer.observe(el));
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-company">(주)나루텍 | Narutech Co., Ltd</div>
+        <div>사업자등록번호: 107-86-39760 &nbsp;|&nbsp; 대표: 박경애 &nbsp;|&nbsp; 설립: 2003.09.15</div>
+      </div>
+      <div>© 2025 Narutech Co., Ltd. All rights reserved.</div>
+    </div>
+  </footer>
 
-      window.addEventListener("scroll", () => {
-        const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll("nav ul a");
-        let current = "";
-        sections.forEach((s) => {
-          if (window.scrollY >= s.offsetTop - 100) current = s.id;
-        });
-        navLinks.forEach((a) => {
-          a.style.color =
-            a.getAttribute("href") === "#" + current ? "var(--blue)" : "";
-        });
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
       });
-    </script>
-  </body>
-</html>
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+      const sections = document.querySel
