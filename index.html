@@ -470,93 +470,6 @@
         line-height: 1.45;
       }
 
-      /* ORG */
-      #organization {
-        background: var(--blue-subtle);
-      }
-
-      .org-chart {
-        max-width: 580px;
-        margin: 0 auto;
-      }
-      .org-ceo {
-        text-align: center;
-      }
-
-      .org-box {
-        display: inline-block;
-        background: var(--blue);
-        color: white;
-        font-weight: 700;
-        font-size: 1rem;
-        padding: 1rem 3rem;
-        border-radius: 12px;
-        letter-spacing: 0.04em;
-        box-shadow: 0 8px 30px rgba(0, 64, 152, 0.25);
-      }
-
-      .org-line {
-        width: 2px;
-        height: 40px;
-        background: rgba(0, 64, 152, 0.25);
-        margin: 0 auto;
-      }
-
-      .org-branch {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        position: relative;
-      }
-
-      .org-branch::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 25%;
-        right: 25%;
-        height: 2px;
-        background: rgba(0, 64, 152, 0.2);
-      }
-
-      .org-dept {
-        flex: 1;
-        max-width: 220px;
-        position: relative;
-      }
-
-      .org-dept::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 30px;
-        background: rgba(0, 64, 152, 0.2);
-      }
-
-      .org-dept-box {
-        margin-top: 30px;
-        background: white;
-        border: 1.5px solid var(--blue);
-        border-radius: 12px;
-        padding: 1.2rem 1.5rem;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0, 64, 152, 0.07);
-      }
-
-      .org-dept-name {
-        font-weight: 700;
-        font-size: 0.95rem;
-        color: var(--blue);
-        margin-bottom: 0.3rem;
-      }
-      .org-dept-role {
-        font-size: 0.78rem;
-        color: var(--muted);
-      }
-
       /* CLIENTS */
       #clients .section-header {
         text-align: center;
@@ -764,13 +677,6 @@
         .hero-stats {
           gap: 1.5rem;
         }
-        .org-branch {
-          flex-direction: column;
-          align-items: center;
-        }
-        .org-branch::before {
-          display: none;
-        }
       }
     </style>
   </head>
@@ -787,8 +693,7 @@
       <ul>
         <li><a href="#business">사업분야</a></li>
         <li><a href="#projects">프로젝트</a></li>
-        <li><a href="#organization">조직</a></li>
-        <li><a href="#clients">고객사</a></li>
+<li><a href="#clients">고객사</a></li>
         <li><a href="#contact" class="nav-cta">문의하기</a></li>
       </ul>
     </nav>
@@ -922,36 +827,6 @@
             ><span class="project-name"
               >한화에어로스페이스 창원 2,3공장 통합모니터링 시스템</span
             >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ORGANIZATION -->
-    <section id="organization" class="section">
-      <div class="section-inner">
-        <div class="section-header reveal" style="text-align: center">
-          <div class="section-tag" style="justify-content: center">
-            Organization
-          </div>
-          <h2>조직도</h2>
-        </div>
-        <div class="org-chart reveal">
-          <div class="org-ceo"><div class="org-box">CEO · 대표이사</div></div>
-          <div class="org-line"></div>
-          <div class="org-branch">
-            <div class="org-dept">
-              <div class="org-dept-box">
-                <div class="org-dept-name">경영지원팀</div>
-                <div class="org-dept-role">경영 및 사업기획</div>
-              </div>
-            </div>
-            <div class="org-dept">
-              <div class="org-dept-box">
-                <div class="org-dept-name">사업개발팀</div>
-                <div class="org-dept-role">고객사 시스템 개발 및 운영</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
